@@ -1,15 +1,26 @@
-# Prueba de R 
-x <- c(5, 6, 5, 6, 7, 7, 5, 6, 7, 6, 7, 7, 8); 
+# Cargar datos
+data <- read.csv("dataset-28-09-25.csv", header = TRUE, sep = ",")
 
-mx = mean(x); 
-sdx = sd(x); 
+head(data)
 
-xdn <- seq(-5, 5, length.out = 100); 
-y = dnorm(xdn, mx, sdx)
-
-plot(xdn, y, main = "Distribucion normal para tomates"); 
-
-print("Hola mundo")
+mass <- data$m..g.
 
 
+mean_mass <- mean(mass)
+sd_mass   <- sd(mass)
+
+
+hist(mass, breaks=10, probability=TRUE,
+     col="lightblue", main="Distribución de masas",
+     xlab="Masa (g)")
+x <- seq(min(mass), max(mass), length=100)
+lines(x, dnorm(x, mean=mean_mass, sd=sd_mass), col="red", lwd=2)
+
+n <- length(mass)
+error <- qnorm(0.975) * sd_mass / sqrt(n)
+ci <- c(mean_mass - error, mean_mass + error)
+ci
+
+
+boxplot(mass, main="Boxplot the masas medidas en muestra")
 
