@@ -1,50 +1,40 @@
-<<<<<<< HEAD
-# Cargar datos
+#Load data
 data <- read.csv("dataset-28-09-25.csv", header = TRUE, sep = ",")
 
 head(data)
 
-mass <- data$m..g.
-=======
-datos <- read.csv("G:/Universidad/Trabajos_Mecatronica/9_Semestre/PAI/Tomate.csv") 
 #Mass
-mass <- datos$`m..g.` 
-m1 <- mean(x) 
-sd1 <- sd(x)
-hist(mass, breaks = 10, probability = TRUE, col = "lightblue", border = "black", main = "Distribuci贸n de masas", xlab = "Masa (g)")  
-curve(dnorm(x, mean = m1, sd = sd1), col = "red", lwd = 2, add = TRUE)
-boxplot(mass,main = "Distribuci贸n de masas", ylab = "Masa (g)", xlab = "Muestras")
-#Major diameter
-d_M <- datos$`D_M..cm.` 
-m2 <- mean(d_M) 
-sd2 <- sd(d_M)
-hist(d_M, breaks = 10, probability = TRUE, col = "lightblue", border = "black", main = "Distribuci贸n de di谩metros mayores", xlab = "Di谩metros Mayores (cm)")  
-curve(dnorm(x, mean = m2, sd = sd2), col = "red", lwd = 2, add = TRUE)
-#Minor diameter
-d_m <- datos$`d_m..cm.` 
-m3 <- mean(d_m) 
-sd3 <- sd(d_m)
-hist(d_m, breaks = 10, probability = TRUE, col = "lightblue", border = "black", main = "Distribuci贸n de di谩metros menores", xlab = "Di谩metros Menores (cm)")  
-curve(dnorm(x, mean = m3, sd = sd3), col = "red", lwd = 2, add = TRUE)
-boxplot(d_M, d_m,main = "Distribuci贸n de masas", ylab = "Masa (g)", xlab = "Muestras")
->>>>>>> 3cd7c2bde01346fcf8483e8960f5ec1f7316505e
-
-
+mass <- data$m..g.
 mean_mass <- mean(mass)
 sd_mass   <- sd(mass)
 
 
 hist(mass, breaks=10, probability=TRUE,
-     col="lightblue", main="Distribuci贸n de masas",
+     col="lightblue", main="Distribuci髇 de masas",
      xlab="Masa (g)")
-x <- seq(min(mass), max(mass), length=100)
-lines(x, dnorm(x, mean=mean_mass, sd=sd_mass), col="red", lwd=2)
+x1 <- seq(min(mass), max(mass), length=100)
+lines(x1, dnorm(x, mean=mean_mass, sd=sd_mass), col="red", lwd=2)
 
-n <- length(mass)
+n_mass <- length(mass)
 error <- qnorm(0.975) * sd_mass / sqrt(n)
 ci <- c(mean_mass - error, mean_mass + error)
-ci
+
+boxplot(mass, main="Boxplot the masas medidas en muestra", ylabel="Gramos(g)")
+#Major diameter 
+
+d_M <- data$D_M..cm.
+mean_d_M <- mean(d_M)
+sd_d_M   <- sd(d_M)
 
 
-boxplot(mass, main="Boxplot the masas medidas en muestra")
+hist(d_M, breaks=10, probability=TRUE,
+     col="lightblue", main="Distribuci髇 de di醡etros mayores",
+     xlab="Masa (g)")
+x <- seq(min(d_M), max(d_M), length=100)
+lines(x, dnorm(x, mean=mean_d_M, sd=sd_d_M), col="red", lwd=2)
 
+n_d_M <- length(d_M)
+error_2 <- qnorm(0.975) * sd_d_M / sqrt(n_d_M)
+ci_2 <- c(mean_d_M - error_2, mean_d_M + error_2)
+
+boxplot(d_M, main="Boxplot the masas medidas en muestra", ylabel="Gramos(g)")
