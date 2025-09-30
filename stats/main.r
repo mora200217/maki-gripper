@@ -8,7 +8,6 @@ mass <- data$m..g.
 mean_mass <- mean(mass)
 sd_mass   <- sd(mass)
 
-
 hist(mass, breaks=10, probability=TRUE,
      col="lightblue", main="Distribución de masas",
      xlab="Masa (g)")
@@ -25,7 +24,6 @@ boxplot(mass, main="Boxplot de masas medidas en muestra", ylabel="Masa (g)")
 d_M <- data$D_M..cm.
 mean_d_M <- mean(d_M)
 sd_d_M   <- sd(d_M)
-
 
 hist(d_M, breaks=10, probability=TRUE,
      col="lightblue", main="Distribución de diámetros mayores",
