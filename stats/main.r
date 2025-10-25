@@ -1,3 +1,7 @@
+# Maki Gripper 
+# ---
+# Tratamiento estadistico de muestras de tomate (n = 30) 
+
 #Load data
 data <- read.csv("dataset-28-09-25.csv", header = TRUE, sep = ",")
 
@@ -53,3 +57,28 @@ error_d_m <- qnorm(0.975) * sd_d_m / sqrt(n_d_m)
 ci_d_m <- c(mean_d_m - error_d_m, mean_d_m + error_d_m)
 
 boxplot(d_m, main="Boxplot de diámetros menores medidos en muestra", ylabel="Diámetros (cm)")
+
+# Inversa unilateral 
+summary(data)
+
+## Limpieza para masa
+
+# Calcular Q1 y Q3
+mass 
+Q1 <- quantile(mass, 0.25)
+Q3 <- quantile(mass, 0.75)
+IQR <- Q3 - Q1
+
+
+lim_inf <- Q1 - 1.5 * IQR
+lim_sup <- Q3 + 1.5 * IQR
+
+# Filtrar sin atípicos
+mass 
+mass_clean <- mass[mass >= lim_inf & mass <= lim_sup]
+mass_clean
+
+boxplot(list(Original = mass, Limpio = mass_clean))
+
+summary(mass_clean)
+summary(mass)
