@@ -59,7 +59,6 @@ summary(data)
 ## Limpieza para masa
 
 # Calcular Q1 y Q3
-mass 
 Q1_mass <- quantile(mass, 0.25)
 Q3_mass <- quantile(mass, 0.75)
 IQR_mass <- Q3_mass - Q1_mass
@@ -81,7 +80,6 @@ summary(mass)
 ## Limpieza para diámetro mayor
 
 # Calcular Q1 y Q3
-d_M
 Q1_d_M <- quantile(d_M, 0.25)
 Q3_d_M <- quantile(d_M, 0.75)
 IQR_d_M <- Q3_d_M - Q1_d_M
@@ -103,7 +101,6 @@ summary(d_M)
 ## Limpieza para diámetro menor
 
 # Calcular Q1 y Q3
-d_m
 Q1_d_m <- quantile(d_m, 0.25)
 Q3_d_m <- quantile(d_m, 0.75)
 IQR_d_m <- Q3_d_m - Q1_d_m
