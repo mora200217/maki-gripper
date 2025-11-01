@@ -1,0 +1,203 @@
+
+(kicad_symbol_lib (version 20211014) (generator kicad_symbol_editor)
+  (symbol "PIC16F1827-I_SS" (pin_names (offset 1.016)) (in_bom yes) (on_board yes)
+    (property "Reference" "U" (id 0) (at -71.12 28.94 0.0)
+      (effects (font (size 1.27 1.27)) (justify bottom left))
+    )
+    (property "Value" "PIC16F1827-I_SS" (id 1) (at -71.12 -31.94 0.0)
+      (effects (font (size 1.27 1.27)) (justify bottom left))
+    )
+    (property "Footprint" "PIC16F1827-I_SS:SOP65P780X200-20N" (id 2) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "MF" "Microchip" (id 4) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "Description" "\n                        \n                            SSOP-20 .209in TUBE, 7 KB Flash, 384 bytes RAM, 32MHz Internal Oscillator | Microchip Technology Inc. PIC16F1827-I/SS\n                        \n" (id 5) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "Package" "SSOP-20 Microchip" (id 6) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "Price" "None" (id 7) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "SnapEDA_Link" "https://www.snapeda.com/parts/PIC16F1827-I/SS/Microchip+Technology/view-part/?ref=snap" (id 8) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "MP" "PIC16F1827-I/SS" (id 9) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "Availability" "In Stock" (id 10) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (property "Check_prices" "https://www.snapeda.com/parts/PIC16F1827-I/SS/Microchip+Technology/view-part/?ref=eda" (id 11) (at 0 0 0)
+      (effects (font (size 1.27 1.27)) (justify bottom) hide)
+    )
+    (symbol "PIC16F1827-I_SS_0_0"
+      (rectangle (start -71.12 -27.94) (end 71.12 27.94)
+        (stroke (width 0.41)) (fill (type background))
+      )
+      (pin input line (at -76.2 20.32 0) (length 5.08)
+        (name "RA0/AN0/CPS0/C12IN0-/SDO2"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "19"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin input line (at -76.2 17.78 0) (length 5.08)
+        (name "RA1/AN1/CPS1/C12IN1-/~SS2"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "20"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin input line (at -76.2 15.24 0) (length 5.08)
+        (name "RA2/AN2/CPS2/C12IN2-/C12IN+/VREF-/DACOUT"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "1"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin input line (at -76.2 12.7 0) (length 5.08)
+        (name "RA3/AN3/CPS3/C12IN3-/C1IN+/VREF+/C1OUT/CCP3/SRQ"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "2"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin input line (at -76.2 10.16 0) (length 5.08)
+        (name "RA5/~MCLR/VPP/~SS1"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "4"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin input clock (at -76.2 7.62 0) (length 5.08)
+        (name "RA7/OSC1/CLKIN/P1C/CCP2/P2A"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "18"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin input line (at -76.2 5.08 0) (length 5.08)
+        (name "RB0/SRI/T1G/CCP1/P1A/INT/SRI/FLT0"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "7"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin input line (at -76.2 2.54 0) (length 5.08)
+        (name "RB2/AN10/CPS10/MDMIN/TX/CK/RX/DT/SDA2/SDI2/SDO1"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "9"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin input line (at -76.2 3.55271e-15 0) (length 5.08)
+        (name "RB4/AN8/CPS8/SCL1/SCK1/MDCIN2"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "11"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin input line (at -76.2 -2.54 0) (length 5.08)
+        (name "RB7/AN6/CPS6/T1OSO/P1D/P2B/MDCIN1/ICSPDAT"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "14"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at -76.2 -7.62 0) (length 5.08)
+        (name "RA4/AN4/CPS4/C2OUT/T0CKI/CCP4/SRNQ"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "3"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional clock (at -76.2 -10.16 0) (length 5.08)
+        (name "RA6/OSC2/CLKOUT/CLKR/P1D/P2B/SDO1"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "17"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at -76.2 -15.24 0) (length 5.08)
+        (name "RB1/AN11/CPS11/RX/DT/SDA1/SDI1"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "8"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at -76.2 -17.78 0) (length 5.08)
+        (name "RB3/AN9/CPS9/MDOUT/CCP1/P1A/VCAP"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "10"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin power_in line (at 76.2 25.4 180.0) (length 5.08)
+        (name "VDD"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "15"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin power_in line (at 76.2 25.4 180.0) (length 5.08)
+        (name "VDD"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "16"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional line (at 76.2 5.08 180.0) (length 5.08)
+        (name "RB5/AN7/CPS7/P1B/TX/CK/SCL2/SCK2/~SS1"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "12"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin bidirectional clock (at 76.2 2.54 180.0) (length 5.08)
+        (name "RB6/AN5/CPS5/T1CKI/T1OSI/P1C/CCP2/P2A/ICSPCLK"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "13"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin power_in line (at 76.2 -22.86 180.0) (length 5.08)
+        (name "VSS"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "5"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+      (pin power_in line (at 76.2 -22.86 180.0) (length 5.08)
+        (name "VSS"
+          (effects (font (size 1.016 1.016)))
+        )
+        (number "6"
+          (effects (font (size 1.016 1.016)))
+        )
+      )
+    )
+  )
+)
