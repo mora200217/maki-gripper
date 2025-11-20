@@ -1,0 +1,2 @@
+ninja: Entering directory `G:\Universidad\Trabajos_Mecatronica\9_Semestre\PAI\Nativo_Haptico\example_app\app\.cxx\Debug\47h65u71\arm64-v8a'
+ninja: no work to do.

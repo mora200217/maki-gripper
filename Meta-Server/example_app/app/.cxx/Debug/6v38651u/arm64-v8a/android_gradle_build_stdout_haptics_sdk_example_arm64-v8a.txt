@@ -1,0 +1,3 @@
+ninja: Entering directory `G:\Universidad\Trabajos_Mecatronica\9_Semestre\PAI\Meta-Server\example_app\app\.cxx\Debug\6v38651u\arm64-v8a'
+[1/2] Building CXX object CMakeFiles/haptics_sdk_example.dir/network_bridge.cpp.o
+[2/2] Linking CXX shared library G:\Universidad\Trabajos_Mecatronica\9_Semestre\PAI\Meta-Server\example_app\app\build\intermediates\cxx\Debug\6v38651u\obj\arm64-v8a\libhaptics_sdk_example.so

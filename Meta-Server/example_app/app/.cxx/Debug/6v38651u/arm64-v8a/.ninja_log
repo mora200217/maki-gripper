@@ -1,0 +1,9 @@
+# ninja log v5
+22	735	785362544	CMakeFiles/native_app_glue.dir/dbde2b61ed489cabe754767e2297982a/21.4.7075529/sources/android/native_app_glue/android_native_app_glue.c.o	d6e96416fa74c94b
+737	946	785362544	libnative_app_glue.a	cfe3f77bd7396e5
+1	1274	785362545	CMakeFiles/haptics_sdk_example.dir/main_android.cpp.o	7644a672d12aab5a
+91	1448	785362545	CMakeFiles/haptics_sdk_example.dir/error.cpp.o	a3b379d8576f77b9
+66	1719	785362545	CMakeFiles/haptics_sdk_example.dir/program.cpp.o	48082c5c500e06a5
+1719	2083	785362546	G:/Universidad/Trabajos_Mecatronica/9_Semestre/PAI/Meta-Server/example_app/app/build/intermediates/cxx/Debug/6v38651u/obj/arm64-v8a/libhaptics_sdk_example.so	4ebbc0e84bbb3047
+11	1177	785364075	CMakeFiles/haptics_sdk_example.dir/network_bridge.cpp.o	8510d412562484d9
+1177	1635	785364075	G:/Universidad/Trabajos_Mecatronica/9_Semestre/PAI/Meta-Server/example_app/app/build/intermediates/cxx/Debug/6v38651u/obj/arm64-v8a/libhaptics_sdk_example.so	f8f49fc6704bcca

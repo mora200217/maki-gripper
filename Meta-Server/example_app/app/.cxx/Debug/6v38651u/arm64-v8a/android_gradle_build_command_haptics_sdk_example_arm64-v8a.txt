@@ -1,0 +1,7 @@
+Executable : C:\Users\jaime\AppData\Local\Android\Sdk\cmake\3.18.1\bin\ninja.exe
+arguments : 
+-C
+G:\Universidad\Trabajos_Mecatronica\9_Semestre\PAI\Meta-Server\example_app\app\.cxx\Debug\6v38651u\arm64-v8a
+haptics_sdk_example
+jvmArgs : 
+
