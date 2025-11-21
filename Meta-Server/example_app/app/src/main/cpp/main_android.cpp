@@ -23,8 +23,10 @@ void appCommandHandler(struct android_app*, int32_t cmd) {
 }
 
 void runEventLoop(android_app* app) {
-  Program program(app);
-  app->onAppCmd = appCommandHandler;
+    LOG_INFO("=== RUN EVENT LOOP INICIADO ===");
+    Program program(app);
+    LOG_INFO("Program construido, entrando al loop principal");
+    app->onAppCmd = appCommandHandler;
 
   bool exitLoop = false;
   while (!app->destroyRequested) {

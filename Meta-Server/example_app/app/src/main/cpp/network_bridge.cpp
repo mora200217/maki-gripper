@@ -10,7 +10,7 @@ JavaVM* NetworkBridge::g_vm = nullptr;
 jobject NetworkBridge::g_context = nullptr;
 jclass NetworkBridge::g_jniBridgeClass = nullptr;
 jmethodID NetworkBridge::g_onHapticEventMethod = nullptr;
-std::string NetworkBridge::g_serverUrl = "https://yourserver.com/api/haptics";
+std::string NetworkBridge::g_serverUrl = "https://sherrell-presurgical-abe.ngrok-free.dev/metaquest/send";
 
 static bool attachIfNeeded(JavaVM* vm, JNIEnv** outEnv, bool* attachedHere) {
     if (!vm || !outEnv || !attachedHere) return false;
@@ -35,6 +35,7 @@ static bool attachIfNeeded(JavaVM* vm, JNIEnv** outEnv, bool* attachedHere) {
 }
 
 void NetworkBridge::initialize(JavaVM* vm, jobject context) {
+    LOG_INFO("=== NETWORK BRIDGE INIT ===");
     if (!vm || !context) {
         LOG_ERROR("initialize called with null vm or context");
         return;

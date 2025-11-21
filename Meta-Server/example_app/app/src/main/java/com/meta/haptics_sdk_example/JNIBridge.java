@@ -6,6 +6,7 @@ public class JNIBridge {
 
     // Este método será llamado desde C++
     public static void onHapticEventFromNative(String eventType, String controller, float intensity) {
+        Log.d(TAG, "=== onHapticEventFromNative INVOCADO ===");
         Log.d(TAG, "Received from native: " + eventType + " - " + controller + " - " + intensity);
 
         // Usar HttpClient para enviar al servidor
@@ -25,7 +26,17 @@ public class JNIBridge {
 
     // Método para configurar la URL del servidor
     public static void setServerUrl(String url) {
+        if (url == null || url.isEmpty()) {
+            Log.e(TAG, "ERROR: URL inválida recibida");
+            return;
+        }
         serverUrl = url;
         Log.d(TAG, "Server URL set to: " + url);
+    }
+
+    public static void logCurrentState() {
+        Log.d(TAG, "=== ESTADO ACTUAL JNI BRIDGE ===");
+        Log.d(TAG, "Server URL: " + serverUrl);
+        Log.d(TAG, "Clase cargada: Sí");
     }
 }

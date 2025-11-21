@@ -21,11 +21,16 @@ public class HttpClient {
     public static void sendHapticEvent(String serverUrl, String eventType,
                                        String controller, float intensity,
                                        HttpResponseCallback callback) {
+        Log.d(TAG, "=== INICIANDO sendHapticEvent ===");
+        Log.d(TAG, "URL: " + serverUrl);
+        Log.d(TAG, "Datos - Event: " + eventType + ", Controller: " + controller + ", Intensity: " + intensity);
         new Thread(() -> {
             HttpURLConnection connection = null;
             try {
+                Log.d(TAG, "🔗 Creando conexión...");
                 URL url = new URL(serverUrl);
                 connection = (HttpURLConnection) url.openConnection();
+                Log.d(TAG, "✅ Conexión creada - Tipo: " + connection.getClass().getSimpleName());
 
                 if (connection instanceof HttpsURLConnection) {
                     // Para desarrollo - quitar en producción
@@ -93,8 +98,15 @@ public class HttpClient {
             } finally {
                 if (connection != null) {
                     connection.disconnect();
+                    Log.d(TAG, "=== FIN sendHapticEvent ===");
                 }
             }
         }).start();
+    }
+
+    public static void logNetworkInfo() {
+        Log.d(TAG, "=== INFORMACIÓN DE RED ===");
+        Log.d(TAG, "Timeout: " + TIMEOUT_MS + "ms");
+        Log.d(TAG, "Usando HttpsURLConnection: Sí");
     }
 }

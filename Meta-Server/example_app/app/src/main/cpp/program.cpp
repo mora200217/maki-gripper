@@ -4,6 +4,7 @@
 
 #include "error.hpp"
 #include "logging.hpp"
+#include "network_bridge.h"
 
 void Program::setupOpenXr(App* app) {
   LOG_INFO("Starting OpenXR setup");
@@ -682,19 +683,27 @@ void Program::pollOpenXrActions() {
 
   //// [haptics_sdk] Respond to actions and trigger haptics
   if (this->isBoolActionClicked(_xrActionStartHaptic, _xrPathLeft)) {
-    checkHapticsSdk(haptics_sdk_player_play(_hapticPlayerLeft, HAPTICS_SDK_CONTROLLER_LEFT));
+      LOG_INFO("Gatillo izquierdo presionado - Activando haptics izquierdo");
+      checkHapticsSdk(haptics_sdk_player_play(_hapticPlayerLeft, HAPTICS_SDK_CONTROLLER_LEFT));
+      NetworkBridge::sendHapticEvent("activated", "left", 1.0f);
   }
 
   if (this->isBoolActionClicked(_xrActionStartHaptic, _xrPathRight)) {
-    checkHapticsSdk(haptics_sdk_player_play(_hapticPlayerRight, HAPTICS_SDK_CONTROLLER_RIGHT));
+      LOG_INFO("Gatillo derecho presionado - Activando haptics derecho");
+      checkHapticsSdk(haptics_sdk_player_play(_hapticPlayerRight, HAPTICS_SDK_CONTROLLER_RIGHT));
+      NetworkBridge::sendHapticEvent("activated", "right", 1.0f);
   }
 
   if (this->isBoolActionClicked(_xrActionStopHaptic, _xrPathLeft)) {
-    checkHapticsSdk(haptics_sdk_player_stop(_hapticPlayerLeft));
+      LOG_INFO("Botón X presionado - Desactivando haptics izquierdo");
+      checkHapticsSdk(haptics_sdk_player_stop(_hapticPlayerLeft));
+      NetworkBridge::sendHapticEvent("activated", "right", 1.0f);
   }
 
   if (this->isBoolActionClicked(_xrActionStopHaptic, _xrPathRight)) {
-    checkHapticsSdk(haptics_sdk_player_stop(_hapticPlayerRight));
+      LOG_INFO("Botón A presionado - Desactivando haptics derecho");
+      checkHapticsSdk(haptics_sdk_player_stop(_hapticPlayerRight));
+      NetworkBridge::sendHapticEvent("activated", "right", 1.0f);
   }
   //// [haptics_sdk]
 }
@@ -710,6 +719,8 @@ bool Program::isBoolActionClicked(XrAction action, XrPath path) const {
 Program::Program(App* app) {
   if (!_initialized) {
     LOG_INFO("Starting program initialization");
+    LOG_INFO("Initializing NetworkBridge...");
+    NetworkBridge::initialize(app->activity->vm, app->activity->clazz);
     this->setupOpenXr(app);
     this->setupHaptics();
     _initialized = true;
