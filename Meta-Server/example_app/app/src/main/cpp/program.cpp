@@ -497,6 +497,51 @@ void Program::setupHaptics() {
   //// [haptics_sdk]
 }
 
+void Program::updateHapticClipForIntensity(float intensity) {
+    // Crear un clip JSON dinámico basado en la intensidad
+    std::string dynamicClip = R"({
+        "version": {"major": 1, "minor": 0, "patch": 0},
+        "signals": {
+            "continuous": {
+                "envelopes": {
+                    "amplitude": [
+                        {"time": 0.0, "amplitude": )" + std::to_string(intensity) + R"(},
+                        {"time": 2.0, "amplitude": )" + std::to_string(intensity) + R"(},
+                        {"time": 4.0, "amplitude": 0.0}
+                    ],
+                    "frequency": [
+                        {"time": 0.0, "frequency": 0.0},
+                        {"time": 1.5, "frequency": 1.0},
+                        {"time": 3.0, "frequency": 0.0},
+                        {"time": 4.0, "frequency": 1.0}
+                    ]
+                }
+            }
+        }
+    })";
+
+    // Recargar el clip con la nueva intensidad
+    if (_hapticClip != HAPTICS_SDK_INVALID_ID) {
+        haptics_sdk_release_clip(_hapticClip);
+    }
+
+    checkHapticsSdk(haptics_sdk_load_clip(
+            dynamicClip.c_str(),
+            dynamicClip.length(),
+            &_hapticClip
+    ));
+
+    // Reasignar el clip a los players
+    if (_hapticPlayerLeft != HAPTICS_SDK_INVALID_ID) {
+        checkHapticsSdk(haptics_sdk_player_set_clip(_hapticPlayerLeft, _hapticClip));
+    }
+    if (_hapticPlayerRight != HAPTICS_SDK_INVALID_ID) {
+        checkHapticsSdk(haptics_sdk_player_set_clip(_hapticPlayerRight, _hapticClip));
+    }
+
+    LOG_INFO("Clip háptico actualizado para intensidad: %.2f", intensity);
+}
+
 void Program::renderFrame() {
   XrFrameState frameState{.type = XR_TYPE_FRAME_STATE};
 
@@ -682,28 +727,19 @@ void Program::pollOpenXrActions() {
   }
 
   //// [haptics_sdk] Respond to actions and trigger haptics
-  if (this->isBoolActionClicked(_xrActionStartHaptic, _xrPathLeft)) {
-      LOG_INFO("Gatillo izquierdo presionado - Activando haptics izquierdo");
-      checkHapticsSdk(haptics_sdk_player_play(_hapticPlayerLeft, HAPTICS_SDK_CONTROLLER_LEFT));
-      NetworkBridge::sendHapticEvent("activated", "left", 1.0f);
-  }
-
-  if (this->isBoolActionClicked(_xrActionStartHaptic, _xrPathRight)) {
-      LOG_INFO("Gatillo derecho presionado - Activando haptics derecho");
-      checkHapticsSdk(haptics_sdk_player_play(_hapticPlayerRight, HAPTICS_SDK_CONTROLLER_RIGHT));
-      NetworkBridge::sendHapticEvent("activated", "right", 1.0f);
-  }
 
   if (this->isBoolActionClicked(_xrActionStopHaptic, _xrPathLeft)) {
       LOG_INFO("Botón X presionado - Desactivando haptics izquierdo");
+      _vibrationActiveRight = false;
       checkHapticsSdk(haptics_sdk_player_stop(_hapticPlayerLeft));
-      NetworkBridge::sendHapticEvent("activated", "right", 1.0f);
+      NetworkBridge::sendHapticEvent("deactivated", "right", 1.0f);
   }
 
   if (this->isBoolActionClicked(_xrActionStopHaptic, _xrPathRight)) {
       LOG_INFO("Botón A presionado - Desactivando haptics derecho");
+      _vibrationActiveRight = false;
       checkHapticsSdk(haptics_sdk_player_stop(_hapticPlayerRight));
-      NetworkBridge::sendHapticEvent("activated", "right", 1.0f);
+      NetworkBridge::sendHapticEvent("deactivated", "right", 1.0f);
   }
   //// [haptics_sdk]
 }
@@ -720,14 +756,47 @@ bool Program::isBoolActionClicked(XrAction action, XrPath path) const {
 void Program::onHapticCommandReceived(const HapticCommand& command) {
     LOG_INFO("Aplicando comando háptico - Intensidad: %.1f/10", command.intensity);
 
-    // Convertir intensidad 1-10 a 0.1-1.0 para el SDK de haptics
-    _currentIntensity = command.intensity / 10.0f;
+    try {
+        // Convertir intensidad 1-10 a 0.0-1.0 para el SDK
+        float normalizedIntensity = command.intensity / 10.0f;
 
-    LOG_INFO("Intensidad actualizada: %.1f -> %.2f normalizado",
-             command.intensity, _currentIntensity);
+        LOG_INFO("Normalizando intensidad: %.1f → %.2f",
+                 command.intensity, normalizedIntensity);
 
-    // Aquí luego aplicarás la intensidad al SDK de haptics
-    // applyHapticIntensity(_currentIntensity);
+        // Actualizar intensidades para ambos controladores
+        _currentIntensity = normalizedIntensity;
+        updateHapticClipForIntensity(normalizedIntensity);
+
+        LOG_INFO("Intensidades actualizadas - Int: %.2f",
+                 _currentIntensity);
+
+        std::string targetController = "both"; // por defecto ambos
+
+        // Puedes usar el campo "pattern" o "controller" del comando para especificar
+        if (command.pattern.find("left") != std::string::npos) {
+            targetController = "left";
+        } else if (command.pattern.find("right") != std::string::npos) {
+            targetController = "right";
+        }
+
+        // Aplicar intensidad y activar vibración
+        if (targetController == "left" || targetController == "both") {
+            _vibrationActiveLeft = true;
+            checkHapticsSdk(haptics_sdk_player_play(_hapticPlayerLeft, HAPTICS_SDK_CONTROLLER_LEFT));
+            LOG_INFO("Vibración IZQUIERDA activada - Intensidad: %.2f", normalizedIntensity);
+            NetworkBridge::sendHapticEvent("server_activated", "left", command.intensity);
+        }
+
+        if (targetController == "right" || targetController == "both") {
+            _vibrationActiveRight = true;
+            checkHapticsSdk(haptics_sdk_player_play(_hapticPlayerRight, HAPTICS_SDK_CONTROLLER_RIGHT));
+            LOG_INFO("Vibración DERECHA activada - Intensidad: %.2f", normalizedIntensity);
+            NetworkBridge::sendHapticEvent("server_activated", "right", command.intensity);
+        }
+
+    } catch (const std::exception& e) {
+        LOG_ERROR("Error en onHapticCommandReceived: %s", e.what());
+    }
 }
 
 // Función para consultar comandos periódicamente

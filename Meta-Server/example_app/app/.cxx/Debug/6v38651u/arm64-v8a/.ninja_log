@@ -19,3 +19,14 @@
 1413	1888	785443123	G:/Universidad/Trabajos_Mecatronica/9_Semestre/PAI/Meta-Server/example_app/app/build/intermediates/cxx/Debug/6v38651u/obj/arm64-v8a/libhaptics_sdk_example.so	f8f49fc6704bcca
 11	1372	785443805	CMakeFiles/haptics_sdk_example.dir/network_bridge.cpp.o	8510d412562484d9
 1372	1907	785443806	G:/Universidad/Trabajos_Mecatronica/9_Semestre/PAI/Meta-Server/example_app/app/build/intermediates/cxx/Debug/6v38651u/obj/arm64-v8a/libhaptics_sdk_example.so	f8f49fc6704bcca
+14	2050	785544022	CMakeFiles/haptics_sdk_example.dir/main_android.cpp.o	7644a672d12aab5a
+37	2944	785544023	CMakeFiles/haptics_sdk_example.dir/program.cpp.o	48082c5c500e06a5
+2944	3506	785544024	G:/Universidad/Trabajos_Mecatronica/9_Semestre/PAI/Meta-Server/example_app/app/build/intermediates/cxx/Debug/6v38651u/obj/arm64-v8a/libhaptics_sdk_example.so	f8f49fc6704bcca
+14	2721	785544850	CMakeFiles/haptics_sdk_example.dir/program.cpp.o	48082c5c500e06a5
+2721	3173	785544850	G:/Universidad/Trabajos_Mecatronica/9_Semestre/PAI/Meta-Server/example_app/app/build/intermediates/cxx/Debug/6v38651u/obj/arm64-v8a/libhaptics_sdk_example.so	f8f49fc6704bcca
+27	1541	785546281	CMakeFiles/haptics_sdk_example.dir/main_android.cpp.o	7644a672d12aab5a
+62	2403	785546282	CMakeFiles/haptics_sdk_example.dir/program.cpp.o	48082c5c500e06a5
+2403	2847	785546282	G:/Universidad/Trabajos_Mecatronica/9_Semestre/PAI/Meta-Server/example_app/app/build/intermediates/cxx/Debug/6v38651u/obj/arm64-v8a/libhaptics_sdk_example.so	f8f49fc6704bcca
+30	1704	785546588	CMakeFiles/haptics_sdk_example.dir/main_android.cpp.o	7644a672d12aab5a
+80	2530	785546588	CMakeFiles/haptics_sdk_example.dir/program.cpp.o	48082c5c500e06a5
+2530	2965	785546589	G:/Universidad/Trabajos_Mecatronica/9_Semestre/PAI/Meta-Server/example_app/app/build/intermediates/cxx/Debug/6v38651u/obj/arm64-v8a/libhaptics_sdk_example.so	f8f49fc6704bcca

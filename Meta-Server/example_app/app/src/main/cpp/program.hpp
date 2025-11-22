@@ -66,10 +66,13 @@ class Program {
   void setupOpenXr(App* app);
   void setupGraphics(App* app);
   void setupHaptics();
+  void updateHapticClipForIntensity(float intensity);
   void onHapticCommandReceived(const HapticCommand& command);
   void checkForCommands();
 
   bool isBoolActionClicked(XrAction action, XrPath path) const;
+  bool _vibrationActiveLeft = false;
+  bool _vibrationActiveRight = false;
 
   float _currentIntensity = 1.0f;
   std::thread _commandThread;
