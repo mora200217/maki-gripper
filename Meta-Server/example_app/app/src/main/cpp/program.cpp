@@ -716,13 +716,44 @@ bool Program::isBoolActionClicked(XrAction action, XrPath path) const {
   return state.changedSinceLastSync && state.isActive && state.currentState;
 }
 
+// Función para manejar comandos recibidos
+void Program::onHapticCommandReceived(const HapticCommand& command) {
+    LOG_INFO("Aplicando comando háptico - Intensidad: %.1f/10", command.intensity);
+
+    // Convertir intensidad 1-10 a 0.1-1.0 para el SDK de haptics
+    _currentIntensity = command.intensity / 10.0f;
+
+    LOG_INFO("Intensidad actualizada: %.1f -> %.2f normalizado",
+             command.intensity, _currentIntensity);
+
+    // Aquí luego aplicarás la intensidad al SDK de haptics
+    // applyHapticIntensity(_currentIntensity);
+}
+
+// Función para consultar comandos periódicamente
+void Program::checkForCommands() {
+    while (!_stopCommandThread) {
+        if (_xrSessionRunning) {
+            NetworkBridge::checkForCommands();
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(500)); // Cada 500ms
+    }
+}
+
 Program::Program(App* app) {
   if (!_initialized) {
     LOG_INFO("Starting program initialization");
     LOG_INFO("Initializing NetworkBridge...");
     NetworkBridge::initialize(app->activity->vm, app->activity->clazz);
+    NetworkBridge::setHapticCommandCallback([this](const HapticCommand& command) {
+        this->onHapticCommandReceived(command);
+    });
+
     this->setupOpenXr(app);
     this->setupHaptics();
+
+    _stopCommandThread = false;
+    _commandThread = std::thread(&Program::checkForCommands, this);
     _initialized = true;
     LOG_INFO("Finished program initialization");
   }
@@ -731,6 +762,12 @@ Program::Program(App* app) {
 Program::~Program() {
   LOG_INFO("Starting program uninitialization");
   _initialized = false;
+
+  _stopCommandThread = true;
+  if (_commandThread.joinable()) {
+        _commandThread.join();
+        LOG_INFO("Command thread stopped");
+  }
 
   //// [haptics_sdk] Free resources and uninitialize the SDK
   if (_hapticClip != HAPTICS_SDK_INVALID_ID) {

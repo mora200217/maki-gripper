@@ -28,6 +28,9 @@
 
 #include <map>
 #include <vector>
+#include <thread>
+#include <chrono>
+#include "haptic_command.h"
 
 struct SwapchainInfo {
   XrSwapchain handle;
@@ -63,9 +66,14 @@ class Program {
   void setupOpenXr(App* app);
   void setupGraphics(App* app);
   void setupHaptics();
+  void onHapticCommandReceived(const HapticCommand& command);
+  void checkForCommands();
 
   bool isBoolActionClicked(XrAction action, XrPath path) const;
 
+  float _currentIntensity = 1.0f;
+  std::thread _commandThread;
+  bool _stopCommandThread = false;
   ////// Haptics SDK
   int32_t _hapticClip = HAPTICS_SDK_INVALID_ID;
   int32_t _hapticPlayerLeft = HAPTICS_SDK_INVALID_ID;

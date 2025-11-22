@@ -11,6 +11,7 @@ jobject NetworkBridge::g_context = nullptr;
 jclass NetworkBridge::g_jniBridgeClass = nullptr;
 jmethodID NetworkBridge::g_onHapticEventMethod = nullptr;
 std::string NetworkBridge::g_serverUrl = "https://sherrell-presurgical-abe.ngrok-free.dev/metaquest/send";
+NetworkBridge::HapticCommandCallback NetworkBridge::g_commandCallback = nullptr;
 
 static bool attachIfNeeded(JavaVM* vm, JNIEnv** outEnv, bool* attachedHere) {
     if (!vm || !outEnv || !attachedHere) return false;
@@ -230,6 +231,87 @@ void NetworkBridge::setServerUrl(const std::string& url) {
     if (attachedHere) {
         g_vm->DetachCurrentThread();
     }
-}//
-// Created by jaime on 20/11/2025.
-//
+}
+
+void NetworkBridge::executeCommandCallback(const HapticCommand& command) {
+    LOG_INFO("Ejecutando callback de comando - Intensidad: %.1f", command.intensity);
+
+    if (g_commandCallback) {
+        g_commandCallback(command);
+    } else {
+        LOG_ERROR("No hay callback configurado para comandos hápticos");
+    }
+}
+
+void NetworkBridge::setHapticCommandCallback(HapticCommandCallback callback) {
+    g_commandCallback = callback;
+    LOG_INFO("Haptic command callback set");
+}
+
+void NetworkBridge::checkForCommands() {
+    if (!g_vm || !g_jniBridgeClass) {
+        return;
+    }
+
+    JNIEnv* env = nullptr;
+    bool attachedHere = false;
+    if (!attachIfNeeded(g_vm, &env, &attachedHere)) {
+        return;
+    }
+
+    jmethodID checkCommandMethod = env->GetStaticMethodID(
+            g_jniBridgeClass,
+            "checkForCommandsFromNative",
+            "()V"
+    );
+
+    if (checkCommandMethod) {
+        env->CallStaticVoidMethod(g_jniBridgeClass, checkCommandMethod);
+    } else {
+        LOG_ERROR("checkForCommandsFromNative method not found");
+    }
+
+    if (attachedHere) {
+        g_vm->DetachCurrentThread();
+    }
+}
+
+// Función JNI para recibir comandos:
+extern "C" JNIEXPORT void JNICALL
+Java_com_meta_haptics_1sdk_1example_JNIBridge_onCommandReceived(
+        JNIEnv* env,
+        jclass clazz,
+        jfloat intensity,
+        jfloat duration,
+        jstring pattern
+) {
+    (void)clazz;
+
+    LOG_INFO("onCommandReceived INVOCADO desde JNI");
+
+    const char* patternStr = env->GetStringUTFChars(pattern, nullptr);
+
+    LOG_INFO("Comando recibido desde Java - Intensidad: %.1f, Duración: %.0f, Patrón: %s",
+             intensity, duration, patternStr);
+
+    if (intensity < 0 || intensity > 10) {
+        LOG_ERROR("Intensidad inválida: %.1f", intensity);
+        env->ReleaseStringUTFChars(pattern, patternStr);
+        return;
+    }
+
+    // Crear comando háptico
+    HapticCommand command;
+    command.intensity = intensity;
+    command.duration = duration;
+    command.pattern = patternStr;
+
+    LOG_INFO("Creando HapticCommand...");
+
+    // Usar la función pública para ejecutar el callback
+    NetworkBridge::executeCommandCallback(command);
+
+    LOG_INFO("executeCommandCallback completado");
+
+    env->ReleaseStringUTFChars(pattern, patternStr);
+}

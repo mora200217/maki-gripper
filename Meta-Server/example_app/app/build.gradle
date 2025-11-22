@@ -39,4 +39,8 @@ android {
             version '3.18.1'
         }
     }
+
+    dependencies {
+        implementation 'org.json:json:20231013'
+    }
 }
