@@ -1,0 +1,136 @@
+body {
+    background: #000;
+    font-family: "Orbitron", sans-serif;
+    color: white;
+    margin: 0;
+}
+
+.dash-container {
+    padding: 40px;
+    max-width: 1400px;
+    margin: auto;
+}
+
+/* TITLE */
+.dash-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.title {
+    font-size: 55px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, #3afaff, #0ab0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #5cc9ff;
+    opacity: 0.7;
+}
+
+/* --- TWO COLUMN LAYOUT --- */
+.dash-columns {
+    display: grid;
+    grid-template-columns: 1fr 350px; /* left large, right narrow */
+    gap: 35px;
+}
+
+/* LEFT SPACE FOR 3D MODEL */
+.model3d {
+    width: 100%;
+    height: 650px;
+    border-radius: 20px;
+    border: 1px solid #0a253a;
+    background: rgba(20,20,20,0.65);
+    box-shadow: 0 0 25px rgba(0,150,255,0.25);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #88d9ff;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+/* RIGHT COLUMN (3 stacked cards) */
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* --- CARD STYLES --- */
+.card {
+    background: rgba(20, 20, 20, 0.75);
+    border: 1px solid #0a253a;
+    padding: 22px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 150, 255, 0.15);
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(0,150,255,0.35);
+}
+
+.card::before {
+    content: "";
+    height: 3px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 20px 20px 0 0;
+    position: absolute;
+    background: linear-gradient(90deg, #00c4ff, #0077ff);
+}
+
+.card-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+.card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #b8e8ff;
+}
+
+.value {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+/* CONNECTIONS PANEL */
+.connections {
+    text-align: left;
+}
+
+.conn-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #082231;
+}
+
+.status {
+    padding: 5px 14px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+.green {
+    background: #3dff88;
+    color: #033d19;
+}
+
+.red {
+    background: #ff3d3d;
+    color: #2a0000;
+}

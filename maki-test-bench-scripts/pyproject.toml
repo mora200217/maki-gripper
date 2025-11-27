@@ -1,0 +1,18 @@
+[project]
+name = "maki-test-bench-scripts"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Andrés Morales",email = "amoralesma@unal.edu.co"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+]
+
+[tool.poetry]
+packages = [{include = "maki_test_bench_scripts", from = "src"}]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

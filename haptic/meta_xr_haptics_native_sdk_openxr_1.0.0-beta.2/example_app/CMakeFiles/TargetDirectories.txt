@@ -1,0 +1,3 @@
+/Users/amoralesma/Documents/UN/pai/maki-gripper/haptic/meta_xr_haptics_native_sdk_openxr_1.0.0-beta.2/example_app/CMakeFiles/haptics_sdk_example.dir
+/Users/amoralesma/Documents/UN/pai/maki-gripper/haptic/meta_xr_haptics_native_sdk_openxr_1.0.0-beta.2/example_app/CMakeFiles/edit_cache.dir
+/Users/amoralesma/Documents/UN/pai/maki-gripper/haptic/meta_xr_haptics_native_sdk_openxr_1.0.0-beta.2/example_app/CMakeFiles/rebuild_cache.dir
