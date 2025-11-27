@@ -1,0 +1,49 @@
+{
+  "buildFiles": [
+    "G:\\Universidad\\Trabajos_Mecatronica\\9_Semestre\\PAI\\Nativo_Haptico\\example_app\\app\\src\\main\\cpp\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Users\\jaime\\AppData\\Local\\Android\\Sdk\\cmake\\3.18.1\\bin\\ninja.exe",
+      "-C",
+      "G:\\Universidad\\Trabajos_Mecatronica\\9_Semestre\\PAI\\Nativo_Haptico\\example_app\\app\\.cxx\\Debug\\47h65u71\\arm64-v8a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Users\\jaime\\AppData\\Local\\Android\\Sdk\\cmake\\3.18.1\\bin\\ninja.exe",
+    "-C",
+    "G:\\Universidad\\Trabajos_Mecatronica\\9_Semestre\\PAI\\Nativo_Haptico\\example_app\\app\\.cxx\\Debug\\47h65u71\\arm64-v8a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "haptics_sdk_example::@6890427a1f51a3e7e1df": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "haptics_sdk_example",
+      "output": "G:\\Universidad\\Trabajos_Mecatronica\\9_Semestre\\PAI\\Nativo_Haptico\\example_app\\app\\build\\intermediates\\cxx\\Debug\\47h65u71\\obj\\arm64-v8a\\libhaptics_sdk_example.so",
+      "runtimeFiles": [
+        "G:\\Universidad\\Trabajos_Mecatronica\\9_Semestre\\PAI\\Nativo_Haptico\\example_app\\app\\libs\\arm64-v8a\\libopenxr_loader.so",
+        "G:\\Universidad\\Trabajos_Mecatronica\\9_Semestre\\PAI\\Nativo_Haptico\\example_app\\app\\libs\\arm64-v8a\\libhaptics_sdk.so"
+      ]
+    },
+    "native_app_glue::@6890427a1f51a3e7e1df": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "native_app_glue",
+      "output": "G:\\Universidad\\Trabajos_Mecatronica\\9_Semestre\\PAI\\Nativo_Haptico\\example_app\\app\\.cxx\\Debug\\47h65u71\\arm64-v8a\\libnative_app_glue.a"
+    }
+  },
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "C:\\Users\\jaime\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "cppCompilerExecutable": "C:\\Users\\jaime\\AppData\\Local\\Android\\Sdk\\ndk\\21.4.7075529\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe"
+    }
+  },
+  "cFileExtensions": [
+    "c"
+  ],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

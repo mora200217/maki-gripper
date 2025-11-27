@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monitor Simple</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        button { padding: 10px; margin: 5px; }
+        pre { background: #f5f5f5; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Monitor Simple de Conexiones</h1>
+    
+    <div class="section">
+        <h3>Estado del Servidor</h3>
+        <button onclick="testEndpoint('/status')">/status</button>
+        <button onclick="testEndpoint('/monitor/connections')">/connections</button>
+        <button onclick="testEndpoint('/monitor/history')">/history</button>
+        <button onclick="testEndpoint('/monitor/devices')">/devices</button>
+    </div>
+    
+    <div class="section">
+        <h3>Probar Envío de Datos</h3>
+        <button onclick="sendTestData('metaquest')">MetaQuest Test</button>
+        <button onclick="sendTestData('esp32')">ESP32 Test</button>
+    </div>
+    
+    <div class="section">
+        <h3>Resultado:</h3>
+        <pre id="result">Haz click en algún botón...</pre>
+    </div>
+
+    <script>
+        const SERVER = 'http://localhost:8081';
+        
+        async function testEndpoint(endpoint) {
+            try {
+                const response = await fetch(SERVER + endpoint);
+                const data = await response.json();
+                document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById('result').textContent = 'ERROR: ' + error.message;
+            }
+        }
+        
+        async function sendTestData(type) {
+            try {
+                const response = await fetch(SERVER + '/' + type + '/send', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ test: true, time: new Date().toISOString() })
+                });
+                const data = await response.json();
+                document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById('result').textContent = 'ERROR: ' + error.message;
+            }
+        }
+        
+        // Probar automáticamente al cargar
+        testEndpoint('/status');
+    </script>
+</body>
+</html>

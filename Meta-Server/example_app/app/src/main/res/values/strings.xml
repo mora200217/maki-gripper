@@ -1,0 +1,5 @@
+<resources>
+  <string name="app_name" description="Application name" translatable="false">
+      Haptics SDK OpenXR Example
+  </string>
+</resources>
