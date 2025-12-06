@@ -44,6 +44,14 @@ String getValue(String data, String key) {
 
 // -------------------------- LOOP -------------------------
 void loop() {
+    // ADC reading from flex sensor 
+
+    float raw_read = analogRead(2); // pin 2 is connected to the flex sensor
+
+    Serial.println("Raw ADC: " + String(raw_read));
+    delay(50);
+    
+    
     WiFiClient client = server.available();
     if (!client) return;
 

@@ -12,7 +12,7 @@ def generate_launch_description():
             name='maki_control',
             output='screen',
             parameters=[{
-                "esp32_ip": "10.234.6.32"
+                "esp32_ip": "10.64.60.108"
             }]
         ),
 
