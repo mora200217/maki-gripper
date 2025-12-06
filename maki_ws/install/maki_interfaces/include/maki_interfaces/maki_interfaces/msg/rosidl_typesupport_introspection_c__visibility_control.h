@@ -1,0 +1,1 @@
+/Users/amoralesma/Documents/UN/pai/maki-gripper/maki_ws/build/maki_interfaces/rosidl_typesupport_introspection_c/maki_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h

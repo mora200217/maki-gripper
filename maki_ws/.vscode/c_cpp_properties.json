@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "name": "ROS2_Humble_Mamba",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${env:CONDA_PREFIX}/include",
+                "${env:CONDA_PREFIX}/include/**",
+                "${env:CONDA_PREFIX}/share/ament_index/resource_index/packages/**",
+                "${env:CONDA_PREFIX}/include/ros2/**",
+                "${env:CONDA_PREFIX}/include/rclcpp",
+                "${env:CONDA_PREFIX}/include/maki_interfaces"
+            ],
+            "defines": [],
+            "macFrameworkPath": [
+                "/System/Library/Frameworks",
+                "/Library/Frameworks"
+            ],
+            "compilerPath": "${env:CONDA_PREFIX}/bin/clang++",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "macos-clang-x64"
+        }
+    ],
+    "version": 4
+}

@@ -1,0 +1,1 @@
+/Users/amoralesma/Documents/UN/pai/maki-gripper/maki_ws/build/maki_interfaces/rosidl_typesupport_introspection_cpp/maki_interfaces/srv/detail/haptic_feedback__rosidl_typesupport_introspection_cpp.hpp
